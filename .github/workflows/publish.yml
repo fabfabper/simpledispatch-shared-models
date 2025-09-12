@@ -38,6 +38,9 @@ jobs:
       - name: Generate TypeScript DTOs
         run: dotnet run --project ./simpledispatch-shared-models.csproj
 
+      - name: Install TypeScript
+        run: npm install typescript
+
       - name: Compile TypeScript
         run: npx tsc
 
