@@ -1,0 +1,40 @@
+name: publish typescript dto package
+
+on:
+  push:
+    tags:
+      - "v*.*.*" # publish only when you push a version tag (e.g. v1.0.0)
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://npm.pkg.github.com"
+
+      - name: Restore & Build DTO generator
+        run: |
+          dotnet restore ./simpledispatch-shared-models.csproj
+          dotnet build ./simpledispatch-shared-models.csproj
+
+      - name: Generate TypeScript DTOs
+        run: dotnet run --project ./simpledispatch-shared-models.csproj
+
+      - name: Compile TypeScript
+        run: npx tsc
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

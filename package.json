@@ -1,0 +1,15 @@
+{
+  "name": "@simpledispatch/simpledispatch-dtos",
+  "version": "1.0.0",
+  "main": "typescript/index.js",
+  "types": "typescript/index.d.ts",
+  "files": [
+    "typescript"
+  ],
+  "scripts": {
+    "build": "dotnet run --project simpledispatch-shared-models && tsc"
+  },
+  "dependencies": {
+    "typescript": "^5.9.2"
+  }
+}
