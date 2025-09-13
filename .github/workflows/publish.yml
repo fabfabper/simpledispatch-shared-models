@@ -34,6 +34,11 @@ jobs:
       - name: Generate TypeScript DTOs
         run: dotnet run --project ./simpledispatch-shared-models.csproj
 
+      - name: Sync version from .csproj to package.json
+        run: |
+          VERSION=$(grep -oP '<Version>\K[^<]+' ./simpledispatch-shared-models.csproj)
+          npm version $VERSION --no-git-tag-version
+
       - name: Install TypeScript
         run: npm install typescript
 
