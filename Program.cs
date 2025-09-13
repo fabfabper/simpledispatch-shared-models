@@ -1,8 +1,8 @@
-using System;
-using System.IO;
 using NJsonSchema;
 using NJsonSchema.CodeGeneration.TypeScript;
 using SimpleDispatch.SharedModels.Dtos;
+using SimpleDispatch.SharedModels.Commands;
+using SimpleDispatch.SharedModels.CommandTypes;
 
 namespace SimpleDispatch.SharedModels
 {
@@ -18,9 +18,21 @@ namespace SimpleDispatch.SharedModels
                 typeof(Unit),
             };
 
+            // Define Commands to generate
+            Type[] commandTypes = new Type[]
+            {
+                typeof(CommonCommandType),
+                typeof(EventCommandType),
+                typeof(UnitCommandType),
+                typeof(CommonCommand),
+                typeof(EventCommand),
+                typeof(UnitCommand),
+            };
+
             string outputDir = Path.Combine(Directory.GetCurrentDirectory(), "typescript");
             Directory.CreateDirectory(outputDir);
 
+            // Generate DTOs
             foreach (var dtoType in dtoTypes)
             {
                 var schema = JsonSchema.FromType(dtoType);
@@ -40,7 +52,26 @@ namespace SimpleDispatch.SharedModels
                 Console.WriteLine($"Generated TypeScript interface for {dtoType.Name} at {outputPath}");
             }
 
-            Console.WriteLine("✅ All DTOs generated successfully!");
+            // Generate Commands
+            foreach (var commandType in commandTypes)
+            {
+                var schema = JsonSchema.FromType(commandType);
+
+                var settings = new TypeScriptGeneratorSettings
+                {
+                    TypeStyle = TypeScriptTypeStyle.Interface,
+                };
+
+                var generator = new TypeScriptGenerator(schema, settings);
+                var tsCode = generator.GenerateFile();
+
+                string outputPath = Path.Combine(outputDir, commandType.Name + ".ts");
+                File.WriteAllText(outputPath, tsCode);
+
+                Console.WriteLine($"Generated TypeScript interface for {commandType.Name} at {outputPath}");
+            }
+
+            Console.WriteLine("✅ All DTOs and Commands generated successfully!");
         }
     }
 }
