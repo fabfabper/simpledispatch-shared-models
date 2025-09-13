@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.IO;
 using NJsonSchema;
 using NJsonSchema.CodeGeneration.TypeScript;
-using SimpleDispatchSharedModels.Dtos;
+using SimpleDispatch.SharedModels.Dtos;
 
-namespace SimpleDispatchSharedModels
+namespace SimpleDispatch.SharedModels
 {
     class Program
     {
@@ -28,7 +28,7 @@ namespace SimpleDispatchSharedModels
                 var settings = new TypeScriptGeneratorSettings
                 {
                     TypeStyle = TypeScriptTypeStyle.Interface,
-                    //GenerateOptionalProperties = true
+                    // Note: GenerateOptionalProperties removed as it doesn't exist in newer versions
                 };
 
                 var generator = new TypeScriptGenerator(schema, settings);

@@ -1,13 +1,13 @@
 using System.Text.Json.Serialization;
 
-namespace SimpleDispatchSharedModels.Dtos
+namespace SimpleDispatch.SharedModels.Dtos
 {
     public class Coordinate
     {
         [JsonPropertyName("latitude")]
-        public double Latitude { get; set; }
+        public required double Latitude { get; set; }
 
         [JsonPropertyName("longitude")]
-        public double Longitude { get; set; }
+        public required double Longitude { get; set; }
     }
 }

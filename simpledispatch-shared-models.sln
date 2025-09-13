@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "", "simpledispatch-shared-models.csproj", "{66159766-E0B0-4227-8C86-F4C369812BE2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "simpledispatch-shared-models", "simpledispatch-shared-models.csproj", "{66159766-E0B0-4227-8C86-F4C369812BE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

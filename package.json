@@ -7,7 +7,7 @@
     "typescript"
   ],
   "scripts": {
-    "build": "dotnet run --project simpledispatch-shared-models && tsc"
+    "build": "dotnet run && tsc"
   },
   "dependencies": {
     "typescript": "^5.9.2"
