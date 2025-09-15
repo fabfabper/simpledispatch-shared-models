@@ -16,6 +16,7 @@ namespace SimpleDispatch.SharedModels
                 typeof(Coordinate),
                 typeof(Event),
                 typeof(Unit),
+                typeof(ApiResponse<>),
             };
 
             // Define Commands to generate
