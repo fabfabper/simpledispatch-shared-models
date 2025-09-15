@@ -36,8 +36,11 @@ jobs:
 
       - name: Sync version from .csproj to package.json
         run: |
-          VERSION=$(grep -oP '<Version>\K[^<]+' ./simpledispatch-shared-models.csproj)
-          npm version $VERSION --no-git-tag-version
+          VERSION=$(grep '<Version>' ./simpledispatch-shared-models.csproj | sed 's/.*<Version>\(.*\)<\/Version>.*/\1/' | tr -d ' ')
+          echo "Found version: $VERSION"
+          # Update package.json with the extracted version
+          sed -i "s/\"version\": \".*\"/\"version\": \"$VERSION\"/" package.json
+          echo "Updated package.json to version $VERSION"
 
       - name: Install TypeScript
         run: npm install typescript
