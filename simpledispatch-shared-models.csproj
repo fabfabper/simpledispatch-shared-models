@@ -8,7 +8,7 @@
     
     <!-- NuGet Package Configuration -->
     <PackageId>SimpleDispatch.SharedModels</PackageId>
-    <Version>1.7.0</Version>
+    <Version>1.8.0</Version>
     <Authors>Your Name</Authors>
     <Company>Your Company</Company>
     <Description>Shared entities and DTOs for SimpleDispatch applications</Description>
