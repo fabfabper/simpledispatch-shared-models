@@ -3,15 +3,15 @@ using SimpleDispatch.SharedModels.Dtos;
 
 namespace SimpleDispatch.SharedModels.Converters
 {
-    public static class UnitEntityToDtoConverter
+    public static class EventEntityDtoConverters
     {
-        public static Dtos.Unit ToDto(Entities.Unit entity)
+        public static Dtos.Event ToDto(Entities.Event entity)
         {
             if (entity == null) return null!;
-            return new Dtos.Unit
+            return new Dtos.Event
             {
                 Id = entity.Id,
-                Status = entity.Status,
+                Location = entity.Location,
                 Type = entity.Type,
                 Position = entity.Latitude.HasValue && entity.Longitude.HasValue
                     ? new Coordinate
@@ -20,6 +20,19 @@ namespace SimpleDispatch.SharedModels.Converters
                         Longitude = entity.Longitude.Value
                     }
                     : null
+            };
+        }
+
+        public static Entities.Event ToEntity(Dtos.Event dto)
+        {
+            if (dto == null) return null!;
+            return new Entities.Event
+            {
+                Id = dto.Id,
+                Location = dto.Location,
+                Type = dto.Type,
+                Latitude = dto.Position?.Latitude,
+                Longitude = dto.Position?.Longitude
             };
         }
     }

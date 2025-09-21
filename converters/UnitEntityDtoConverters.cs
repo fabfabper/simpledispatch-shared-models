@@ -1,18 +1,17 @@
 using SimpleDispatch.SharedModels.Entities;
 using SimpleDispatch.SharedModels.Dtos;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SimpleDispatch.SharedModels.Converters
 {
-    public static class EventEntityToDtoConverter
+    public static class UnitEntityDtoConverters
     {
-        public static Dtos.Event ToDto(Entities.Event entity)
+        public static Dtos.Unit ToDto(Entities.Unit entity)
         {
             if (entity == null) return null!;
-            return new Dtos.Event
+            return new Dtos.Unit
             {
                 Id = entity.Id,
-                Location = entity.Location,
+                Status = entity.Status,
                 Type = entity.Type,
                 Position = entity.Latitude.HasValue && entity.Longitude.HasValue
                     ? new Coordinate
@@ -21,6 +20,19 @@ namespace SimpleDispatch.SharedModels.Converters
                         Longitude = entity.Longitude.Value
                     }
                     : null
+            };
+        }
+
+        public static Entities.Unit ToEntity(Dtos.Unit dto)
+        {
+            if (dto == null) return null!;
+            return new Entities.Unit
+            {
+                Id = dto.Id,
+                Status = dto.Status,
+                Type = dto.Type,
+                Latitude = dto.Position?.Latitude,
+                Longitude = dto.Position?.Longitude
             };
         }
     }
