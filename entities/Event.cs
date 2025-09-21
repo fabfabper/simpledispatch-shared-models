@@ -18,11 +18,14 @@ public class Event
     [Column("type")]
     [Required]
     [MaxLength(20)]
-    public required string Type { get; set; } 
+    public required string Type { get; set; }
 
     [Column("latitude")]
     public double? Latitude { get; set; }
 
     [Column("longitude")]
     public double? Longitude { get; set; }
+
+    [Column("location")]
+    public string Location { get; set; }
 }
