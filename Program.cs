@@ -3,6 +3,7 @@ using NJsonSchema.CodeGeneration.TypeScript;
 using SimpleDispatch.SharedModels.Dtos;
 using SimpleDispatch.SharedModels.Commands;
 using SimpleDispatch.SharedModels.CommandTypes;
+using SimpleDispatch.SharedModels.Geo;
 
 namespace SimpleDispatch.SharedModels
 {
@@ -18,6 +19,11 @@ namespace SimpleDispatch.SharedModels
                 typeof(Unit),
                 typeof(EventApiResponse),
                 typeof(UnitApiResponse),
+                typeof(LocationInfo),
+                typeof(DistanceRequest),
+                typeof(Coordinates),
+                typeof(DistanceInfo),
+                typeof(AutocompleteSuggestion),
             };
 
             // Define Commands to generate
