@@ -14,6 +14,6 @@ namespace SimpleDispatch.SharedModels.Dtos
         public Coordinate? Position { get; set; }
 
         [JsonPropertyName("type")]
-        public required string Type { get; set; }
+        public required int Type { get; set; }
     }
 }

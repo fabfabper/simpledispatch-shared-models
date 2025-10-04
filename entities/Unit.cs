@@ -18,8 +18,7 @@ public class Unit
 
     [Column("type")]
     [Required]
-    [MaxLength(20)]
-    public required string Type { get; set; } 
+    public required int Type { get; set; } 
 
     [Column("status")]
     [Required]
